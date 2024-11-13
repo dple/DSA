@@ -4,7 +4,7 @@ class Node:
         self.data = data
         self.next = None
 
-class LinkedList:
+class SinglyLinkedList:
 
     #def __init__(self):
     #    self.head = None
@@ -12,34 +12,40 @@ class LinkedList:
     def __init(self, node=None):
         self.head = node
 
+    # Insert a 'node' to the end of the singly linked list
     def addNode(self, node):
-        previous = self.head
-        tmp = self.head
-        while (tmp):
-            previous = tmp
-            tmp = tmp.next
-        
-        previous.next = node
+        if self.head == None:
+            self.head = node
+        else:        
+            tmp = self.head
+            # Travel a long of the list till the end
+            while (tmp.next):            
+                tmp = tmp.next
+            
+            tmp.next = node
 
+    # Insert a node with its data = 'data' to the end of the singly linked list
     def add(self, data):
         node = Node(data)
         previous = self.head
         tmp = self.head
-        while (tmp):
-            previous = tmp
+        while (tmp.next):            
             tmp = tmp.next
-        previous.next = node
+        tmp.next = node
 
+    # Insert a node with its data = 'data' as a new head
     def insert_at_front(self, data):
         tmp = self.head
         self.head = Node(data)
         self.head.next = tmp
 
+    # Insert a node as a new head
     def insertNode_at_front(self, node):
         tmp = self.head
         self.head = node
         self.head.next = tmp
     
+    # Insert a node to the position 'index'
     def insert_at_position(self, index, data):
         if index == 0:
             self.insert_at_front(data)
@@ -57,7 +63,7 @@ class LinkedList:
                 new_node.next = tmp.next                
                 tmp.next = new_node
 
-    # Insert a value 'data' after the node having a value 'key' in the list 
+    # Insert a value 'data' before the node having a value 'key' in the list 
     def insert_before(self, key, data):
         curr = self.head
         
@@ -80,7 +86,7 @@ class LinkedList:
             new_node.next = curr.next
             curr.next = new_node
         
-
+    # Insert a value 'data' after the node having a value 'key' in the list 
     def insert_after(self, key, data):
         curr = self.head
 
@@ -115,15 +121,57 @@ class LinkedList:
         
         return self.search_key_recursive(node.next, key)
 
+    # Return the length of the singly linked list
     def len(self):
         i = 0
         curr = self.head
         while (curr):
             i += 1
             curr = curr.next
+        return i
 
-    def len_recursive(self):
-        if 
+    # Get the length of list using recursion method 
+    def len_recursive(self, node):
+        if (node == None):
+            return 0
+        return 1 + self.len_recursive(node.next)
+
+    # Delete head
+    def delete_head(self):
+        tmp = self.head
+        self.head = tmp.next
+        tmp = None 
+    
+    # Delete the last element of the list
+    def delete_end(self):
+        if self.head == None:
+            return
+        previous = self.head 
+        curr = previous.next
+        if curr != None:
+            while (curr.next != None):
+                previous = curr
+                curr = curr.next
+            previous.next = None
+            curr = None
+        else:
+            self.head = None
+
+    # Delete the first node 
+    def delete_node(self, data):
+        curr = self.head
+        
+        while (curr and curr.data != data):
+            previous = curr
+            curr = curr.next
+        
+        if curr == None:
+            print("There is no node whose data is: ", data, " to delete!")
+        else:
+            previous.next = curr.next
+            curr = None
+
+    # Print data of the list
     def print_list(self):
         curr = self.head
         while(curr):
@@ -132,13 +180,15 @@ class LinkedList:
         print()
 
 if __name__ == '__main__':
-    llist = LinkedList()
+    llist = SinglyLinkedList()
 
     llist.head = Node(1)
+    llist.delete_end()
+    llist.print_list()
     second = Node(2)
     third = Node(3)
-    llist.head.next = second
-    second.next = third
+    llist.addNode(second)
+    llist.addNode(third)
 
     llist.print_list()
 
@@ -170,3 +220,10 @@ if __name__ == '__main__':
     llist.print_list()
     llist.insert_after(0, -2)
     llist.print_list()
+
+    llist.delete_head()
+    llist.delete_end()
+    llist.delete_node(2)
+    llist.print_list()
+
+    print("Length of the list = ", llist.len_recursive(llist.head))
