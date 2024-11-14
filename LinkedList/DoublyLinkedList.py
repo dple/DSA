@@ -144,21 +144,56 @@ class DoublyLinkedList:
         if self.head is None or self.head.next is None:
             return
         
-        prevNode = None        
+        # Get the head and convert it to tail
         currNode = self.head        
+        prevNode = currNode.prev            
+        currNode.prev = currNode.next
+        currNode.next = prevNode
+
+        # first element, thus become new tail
+        self.tail = currNode
+
+        # Move to next node in the list, currNode.next is now currNode.prev
+        currNode = currNode.prev
+
 
         while (currNode is not None):
-            prevNode = currNode.prev
+            prevNode = currNode.prev            
             currNode.prev = currNode.next
             currNode.next = prevNode
-
+        
             # Move to next node in the list, currNode.next is now currNode.prev
             currNode = currNode.prev
         
-        self.head = prevNode.prev
+        self.head = prevNode.prev        
+
+    def reverse_from_tail(self):
+
+        if self.tail is None or self.tail.prev is None:
+            return 
         
-        self.tail = temp
-        self.tail.next = None 
+        # Get the tail and convert it to head
+        currNode = self.tail
+        nextNode = currNode.next
+        currNode.next = currNode.prev
+        currNode.prev = nextNode
+
+        # Make it head as the first element in the list
+        self.head = currNode
+
+        # Move to the next node from tail
+        currNode = currNode.next 
+
+        while currNode is not None:
+            nextNode = currNode.next
+            currNode.next = currNode.prev
+            currNode.prev = nextNode
+
+            # Move to the next node from tail
+            currNode = currNode.next 
+        
+        # Assign the new tail
+        self.tail = nextNode.next
 
 # Reverse the linked list using recursion 
 def reverse(dllist):
@@ -176,24 +211,31 @@ if __name__ == '__main__':
     
     node = Node(5)
     dllist.insert_end(node)    
-    dllist.insert_end(Node(10))    
-    dllist.reserve_from_head()
-    dllist.forward_traversal()
+    dllist.insert_end(Node(10))        
     dllist.insert_end(Node(11))    
     dllist.insert_end(Node(12))    
     dllist.insert_end(Node(13))    
+    print("List before reversing. ", end='')
+    dllist.forward_traversal()
+    dllist.reserve_from_head()    
+    print("List after resversing. ", end='')    
+    dllist.forward_traversal()
+    dllist.reverse_from_tail()
+    print("List after resversing again. ", end='')    
+    dllist.forward_traversal()
+    #dllist.backward_traversal()
     dllist.insert_at_front(Node(3))
     dllist.insert_at_position(Node(7), 2)    
-    dllist.backward_traversal()
-    dllist.delete_head()    
-    dllist.forward_traversal()
-    dllist.delete_tail()    
-    dllist.forward_traversal()
-    dllist.delete_at_position(4)
-    dllist.forward_traversal()
-    reserved_list = reverse(dllist)    
-    reserved_list.forward_traversal()
-    dllist.reserve_from_head()
-    dllist.forward_traversal()
+    #dllist.backward_traversal()
+    #dllist.delete_head()    
+    #dllist.forward_traversal()
+    #dllist.delete_tail()    
+    #dllist.forward_traversal()
+    #dllist.delete_at_position(4)
+    #dllist.forward_traversal()
+    #reserved_list = reverse(dllist)    
+    #reserved_list.forward_traversal()
+    #dllist.reserve_from_head()
+    #dllist.forward_traversal()
 
     print("Length of the doubly linked list is: ", dllist.len())
