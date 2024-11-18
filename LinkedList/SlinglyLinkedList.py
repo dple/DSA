@@ -171,6 +171,9 @@ class SinglyLinkedList:
         
         if curr == None:
             print("There is no node whose data is: ", data, " to delete!")
+        elif curr == self.head:
+            self.head = curr.next 
+            curr = None
         else:
             previous.next = curr.next
             curr = None
@@ -210,14 +213,14 @@ class SinglyLinkedList:
         # Print a new line
         print()
 
-    # Reverse the list 
+    # Reverse the entire list 
     def reverse(self):
         # List has no more than one element 
         if self.head is None or self.head.next is None:
             return
         
         prevNode = self.head
-        currNode = self.head.next 
+        currNode = prevNode.next 
         # Assign the next node of this new tail to Null. If not the new list will have a circular sub-list of last two elements
         prevNode.next = None
 
@@ -250,11 +253,11 @@ class SinglyLinkedList:
             currNode = nextNode
         
         # Print reversed group
-        currNode = prevNode
-        for i in range(k):
-            print(currNode.data, end = ' ')
-            currNode = currNode.next
-        print()
+        #currNode = prevNode
+        #for i in range(k):
+        #    print(currNode.data, end = ' ')
+        #    currNode = currNode.next
+        #print()
 
         return prevNode
 
@@ -299,18 +302,19 @@ class SinglyLinkedList:
         self.head = self.reverse_k_nodes(self.head, k)
         #print("Old head's data", oldGroupHead.data)
         #groupHead.next = temp
-        newGroupHead = temp
+        newGroupHead = temp               
         
-        while newGroupHead is not None:
-            reversedGroupHead = self.reverse_k_nodes(newGroupHead, k)
-            oldGroupHead.next = reversedGroupHead
+        while newGroupHead is not None:            
             count = 0
             while temp is not None and count < k:
-                count += 1
+                count += 1                
                 temp = temp.next
+                
+            reversedGroupHead = self.reverse_k_nodes(newGroupHead, k)
+            oldGroupHead.next = reversedGroupHead
             
+            oldGroupHead = newGroupHead
             newGroupHead = temp
-
         
 
 
