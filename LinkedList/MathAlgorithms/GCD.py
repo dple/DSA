@@ -103,21 +103,47 @@ def isCoprime(a, b):
 
 # Given a number n, return all prime numbers that are smaller or equal to n
 def sieve_eratosthenes(n):
-    primes = [i for i in range(2, n + 1)]
-    print(primes)
+    primes = [i for i in range(2, n + 1)]    
     k = 2
-    i = 0
-    while k <= n:
-        i += 1
-        for item in range(2, n//k):
-            primes.remove (item)
-        if i < len(primes):
-            k = primes[i]
+    pos = 0
+    while pos <= len(primes):
+        pos += 1
+        for i in range(k, n // k + 1):            
+            if k*i in primes:
+                primes.remove(k * i)    # Delete all multiple of k in the list         
+        if pos < len(primes):
+            k = primes[pos]        
     return primes 
 
+
+# Find LCM of all first n natural numbers 
+def lcmN(n):
+    prime_factors = sieve_eratosthenes(n)
+    lcm = 1
     
+    for prime in prime_factors:
+        power = int(math.log(n, prime))
+        lcm *= prime ** power
+    
+    return lcm 
 
 
+# Given gcd(a, b) and lcm(a, b), find possible pair a, b
+def find_ab(g, l):
+    if l % g != 0:
+        return 0
+    
+    prod = l * g
+    #list = []
+    count = 0
+    for a in range(g, int(math.sqrt(prod) + 1), g):
+        b = prod / a 
+        if b % g == 0:
+            #list += [(a, int(b))]
+            #list += [(int(b), a)]
+            count += 2
+
+    return count #list 
 
 if __name__ == '__main__':
     #print("Enter two positive integers:")
@@ -125,9 +151,14 @@ if __name__ == '__main__':
     #a = int(input().strip())
     #b = int(input().strip())
 
-    #print("GCD of (a, b) is: ", gcd(a, b))    
-    print(sieve_eratosthenes(10))
+    #print("GCD of (a, b) is: ", gcd(a, b))  
+    n = 700  
+    #print(f"Primes smaller than {n} is: {sieve_eratosthenes(n)}")
+    #print(f"LCM of first {n} natural numbers is: {lcmN(n)}")    
     A = [12, 9, 15, 24, 27, 2]
+    
+    print("Number of possible of (a, b) is: ", find_ab(2, 12))
+
     #A = [ 4, 6, 8 ]
-    print("GCD of an array A is: ", gcd_array_reduce(A))
-    print("LCM of an array A is: ", lcm_array_reduce(A))
+    #print("GCD of an array A is: ", gcd_array_reduce(A))
+    #print("LCM of an array A is: ", lcm_array_reduce(A))
