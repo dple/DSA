@@ -30,13 +30,13 @@ def factorization(n):
     primes = sieve_eratosthenes(int(math.sqrt(n)))
     factors = {}
 
-    for k in primes:        
-        if n % k == 0:                 
+    for prime in primes:        
+        if n % prime == 0:                 
             exp = 0
-            while n % k == 0:
-                n /= k                   
+            while n % prime == 0:
+                n /= prime                   
                 exp += 1
-            factors[k] = exp  
+            factors[prime] = exp  
     if n != 1:
         factors[int(n)] = 1
     return factors
