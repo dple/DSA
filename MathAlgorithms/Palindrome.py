@@ -17,9 +17,6 @@ def isPalindrome1(num):
 
     s = str(num)
     s1 = s[::-1]
-    # s1 = list(s) 
-    # s1.reverse()
-    # s1 = ''.join(s1)
     
     if s == s1:
         return True
