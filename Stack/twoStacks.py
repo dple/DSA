@@ -33,13 +33,17 @@ class TwoStacks:
         self.stacks[2*self.size2 + 1] = value
         self.size2 += 1
 
-    def pop1(self):
+    def pop1(self):        
+        res = self.stacks[2*self.size1]
+        self.stacks[2*self.size1] = 0
         self.size1 -= 1
-        self.pop(2*self.size1)
+        return res
 
-    def pop2(self):
+    def pop2(self):        
+        res = self.stacks[2*self.size2 + 1]
+        self.stacks[2*self.size2 + 1] = 0
         self.size2 -= 1
-        self.pop(2*self.size2 + 1)
+        return res
 
     def print_stack1(self):
         print("Stack1 :", end="")
@@ -62,7 +66,7 @@ class TwoStacks:
         self.print_stack2()
 
 if __name__ == '__main__':
-    twostacks = TwoStacks()
+    twostacks = TwoStacks(10)
     twostacks.push1('a')
     twostacks.push1('b')
     twostacks.push1('c')
@@ -74,4 +78,6 @@ if __name__ == '__main__':
 
     twostacks.print_stack1()
     twostacks.print_stack2()
+    twostacks.pop1()
+    twostacks.pop2()
     twostacks.print_stacks()
