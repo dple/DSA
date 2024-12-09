@@ -3,25 +3,25 @@
 # Search if the current element is in the resulted list. Add if no
 # Complexity O(n^2) (Unsorted search n for n elements)
 def distinct(L):
-    ret = []
+    res = []
     for e in L:
-        if e not in ret:
-            ret.append(e)
-    return ret
+        if e not in res:
+            res.append(e)
+    return res
 
 # Sort the list first, then scan to add distinct elements
 # Complexity O(n log n)
 def distinct_sorting(L):
-    ret = []
+    res = []
 
     L.sort()
 
-    ret.append(L[0])
+    res.append(L[0])
     for i in range(1, len(L)):
 
         if L[i] != L[i - 1]:
-            ret.append(L[i])
-    return ret 
+            res.append(L[i])
+    return res 
 
 
 
