@@ -43,8 +43,41 @@ class Queue:
 
         return res 
 
+class LifoQueue:
+    def __init__(self):
+        self.front = None 
+    
+    def __str__(self):
+        res = ""
+        curr_node = self.front
+
+        while curr_node:
+            res += str(curr_node.data) + "->"
+            curr_node = curr_node.next 
+
+        return res[:-2] 
+
+    def is_empty(self):
+        return self.front == None 
+    
+    def enqueue(self, new_data):
+        node = Node(new_data)        
+        node.next = self.front
+        self.front = node
+    
+    def dequeue(self):
+        if self.is_empty():
+            raise Exception("Queue is empty!")    
+        
+        res = self.front.data 
+        self.front = self.front.next 
+
+        return res
+
+    
+
 if __name__ == '__main__':
-    queue = Queue()
+    queue = LifoQueue()
     queue.enqueue('a')
     queue.enqueue('b')
     queue.enqueue('c')
