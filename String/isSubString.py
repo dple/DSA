@@ -2,6 +2,7 @@
 Check if a string is a subsequence in another given string
 
 For example:
+Ref. string: hackerrank
 hereiamstackerrank -> YES
 hackerworld         -> NO
 """
@@ -22,5 +23,4 @@ def isSubString(ref, str):
 
 
 if __name__ == '__main__':
-    ret = isSubString('hackerrank', 'hereiamstackerrank')
-    print(ret)
+    print(isSubString('hackerrank', 'hereiamstackerrank'))

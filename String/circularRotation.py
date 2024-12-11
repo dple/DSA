@@ -18,6 +18,12 @@ def is_circular_rotation2(s1, s2):
 
 # Using KMP algorithm
 def is_circular_rotation3(s1, s2):
+
     return
 
 
+if __name__ == '__main__':
+    s1 = 'aab'
+    s2 = 'aba'
+
+    print(is_circular_rotation2(s1, s2))
