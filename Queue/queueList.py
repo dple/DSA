@@ -34,8 +34,11 @@ class Queue:
         if self.is_empty():
             raise Exception("Queue is empty!")
         
-        res = self.queue.pop(0)
-        return res
+        self.size -= 1
+        return self.queue.pop(0)
+
+    def get_front(self):
+        return self.queue[0]
 
 if __name__ == '__main__':
     queue = Queue()

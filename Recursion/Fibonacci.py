@@ -9,20 +9,6 @@ def nth_Fibonacci_recursion(n):
         return 1
     return nth_Fibonacci_recursion(n - 1) + nth_Fibonacci_recursion(n - 2)
 
-# More efficient approach that uses a nemo table to store Fibonacci numbers calculated 
-# Recursive implementation 
-def nth_Fibonacci_util(n, nemo):
-    if n <= 1:
-        return 1
-    
-    # If nth number was calculated, just return it
-    if nemo[n] != -1:
-        return nemo[n]
-    
-    nemo[n] = nth_Fibonacci_util(n - 1, nemo) + nth_Fibonacci_util(n - 2, nemo)
-
-    return nemo[n]
-
 # Iterative implementation, more efficient than recursive 
 # Time complexity O(n). Space O(1) 
 def nth_iterative_Fibonacci(n):
@@ -37,6 +23,21 @@ def nth_iterative_Fibonacci(n):
         b = c
     
     return c
+
+
+# More efficient approach that uses a nemo table to store Fibonacci numbers calculated 
+# Recursive implementation. Complexity: time O(n). space O(n)
+def nth_Fibonacci_util(n, nemo):
+    if n <= 1:
+        return 1
+    
+    # If nth number was calculated, just return it
+    if nemo[n] != -1:
+        return nemo[n]
+    
+    nemo[n] = nth_Fibonacci_util(n - 1, nemo) + nth_Fibonacci_util(n - 2, nemo)
+
+    return nemo[n]
 
 # By using a nemo table, the time complexity reduce to O(n), Space O(n)
 def nth_Fibonacci(n):
@@ -61,6 +62,11 @@ def multiply_matrix(mat1, mat2):
 
     return mat 
 
+"""
+Complexity:
+    - Time: O(log n)
+    - Space O(1)
+"""
 def nth_Fibonacci_matrix(n):
     if n <= 1:
         return 
@@ -77,6 +83,7 @@ def nth_Fibonacci_matrix(n):
 
         bit_pos -= 1
     return mat[0][0]
+
 
 if __name__ == '__main__':
     n = int(input("Provide a number n: ").strip())
