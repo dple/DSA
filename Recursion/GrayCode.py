@@ -1,40 +1,26 @@
 """
-Convert Binary to GrayCode and vice visa using recursion 
+Convert Binary to GrayCode and vice visa using recursion. 
+
+Given the Binary code of a number as a decimal number, i.e., 1001 (decimal) but represent for 9
 """
 
-def xor(a, b):
-    return '0' if (a == b) else '1'
-
-def flip(a):
-    return '0' if (a == '0') else '0'
-
-def bin2gray(bin_str):
-    if len(bin_str) == 0:
-        return "" 
+# Time complexity: O(log n). Space O(1)
+def bin2gray(n):
+    if not(n):
+        return 0
     
-    graycode = ""
-    graycode += bin_str[0]
-    for i in range(len(bin_str) - 1):
-        graycode += xor(bin_str[i], bin_str[i + 1])
-                        
-    return graycode
+    a = n % 10
+    b = int(n /10) % 10
 
-def gray2bin(gray_str):
-    if len(gray_str) == 0:
-        return ""
+    if (a and not(b)) or (b and not(a)):
+        return (1 + 10*bin2gray(int(n / 10)))
+    else:
+        return 10 * bin2gray(int(n / 10))
     
-    bin_str = ""
-    bin_str += gray_str[0]
-
-    for i in range(1, len(gray_str)):
-        bin_str += xor(bin_str[i - 1], gray_str[i])
-
-    return bin_str 
-
+    
 if __name__ == '__main__':
-    n = 9
-    s = format(n, 'b') 
-    print("Binary string of ", n, "is: ", s)
-    gray = bin2gray(s)
-    print("Gray code of ", n, "is: ", gray)
-    print("Revert to binary:", gray2bin(gray))
+    n = 1001        # decimal number but represent for binary number, i.e., n = 9 in actual decimal representation
+    
+    print("Binary string of the original number: ", n)
+    gray = bin2gray(n)
+    print("Gray code of ", n, "is: ", gray)    
