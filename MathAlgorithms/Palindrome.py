@@ -1,34 +1,27 @@
 
-# Using string. Time O(log10(num)). Space: O(1)
-def isPalindrome(num):
+"""
+Palindrome is a number that read from left to right is equal to the string read from right to left. 
 
-    s = str(num)
-    s1 = ''
-    for c in s:
-        s1 = c + s1
-    
-    if s == s1:
-        return True
-    else:
-        return False
-    
-# Using string. Time O(1). Space: O(1)
-def isPalindrome1(num):
+For example: 1234567654321 is a Palidrome
+"""
 
-    s = str(num)
-    s1 = s[::-1]
-    
-    if s == s1:
-        return True
-    else:
-        return False
+import math 
 
+# Time O(log10(num)). Space: O(1)
+def isPalindrome(n):
+
+    l = math.floor(math.log10(n))
+
+    for i in range(int(l / 2)):
+        a = n % 10
+        b = int(n / math.pow(10, (l - i)))
+    
 
 if __name__ == "__main__":
 
     num = 1234567654321
 
-    if (isPalindrome1(num)):
+    if (isPalindrome(num)):
         print(num, " is a Palindrome number")
     else:
         print(num, " is NOT a Palindrome number")
