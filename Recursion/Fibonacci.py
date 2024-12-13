@@ -28,11 +28,12 @@ def nth_iterative_Fibonacci(n):
 # More efficient approach that uses a nemo table to store Fibonacci numbers calculated 
 # Recursive implementation. Complexity: time O(n). space O(n)
 def nth_Fibonacci_util(n, nemo):
-    if n <= 1:
+    if n <= 2:
+        nemo[n] = 1
         return 1
     
     # If nth number was calculated, just return it
-    if nemo[n] != -1:
+    if nemo[n] != 0:
         return nemo[n]
     
     nemo[n] = nth_Fibonacci_util(n - 1, nemo) + nth_Fibonacci_util(n - 2, nemo)
@@ -42,8 +43,7 @@ def nth_Fibonacci_util(n, nemo):
 # By using a nemo table, the time complexity reduce to O(n), Space O(n)
 def nth_Fibonacci(n):
     # Initlize a nemo table of n + 1 elements whose value is -1
-    nemo = [-1] * (n + 1)
-
+    nemo = [0] * (n + 1)    
     return nth_Fibonacci_util(n, nemo)
 
 
@@ -90,3 +90,4 @@ if __name__ == '__main__':
 
     print("nth Fibonacci number is: ", nth_iterative_Fibonacci(n))
     print("nth Fibonacci number is: ", nth_Fibonacci_matrix(n - 1))
+    print("nth Fibonacci number is: ", nth_Fibonacci(n))
