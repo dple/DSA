@@ -43,9 +43,9 @@ def naive_nqueen_util(col, N, board, results, visited_rows):
 
 
 def naive_nqueen(N):
-    results = []
-    visited_rows = [False] * (N + 1)
-    board = []
+    results = []            # store all solutions 
+    visited_rows = [False] * (N + 1)    # record rows visited
+    board = []              # board[i] records the row where the queen at column i is placed
 
     naive_nqueen_util(1, N, board, results, visited_rows)  # Start placing queen on the col 1
     
@@ -92,11 +92,52 @@ def prunning_nqueen(N):
     return results
 
 
+'''
+3. Prunning backtracking with bitmasks
+'''
+def is_safe(row, col, rows, diag1, diag2):
+    return not((rows >> row) & 1) and \
+        not((diag1 >> (row + col)) & 1) and \
+        not((diag2 >> (row - col + N)) & 1)
+
+
+def bitmasks_nqueen_util(col, N, board, results, rows, diag1, diag2):
+    if col > N:
+        results.append(board.copy())
+        return 
+    
+    for row in range(1, N + 1):
+        if is_safe(row, col, rows, diag1, diag2):
+            rows |= (1 << row)
+            diag1 |= (1 << (row + col))
+            diag2 |= (1 << (row - col + N))
+            board.append(row)
+
+            bitmasks_nqueen_util(col + 1, N, board, results, rows, diag1, diag2)
+
+            # Backtracking
+            rows &= ~(1 << row)
+            diag1 &= ~(1 << (row + col))
+            diag2 &= ~(1 << (row - col + N))
+            board.pop()
+
+def bitmasks_nqueen(N):
+    results = []
+    board = []
+
+    bitmasks_nqueen_util(1, N, board, results, 0, 0, 0)
+
+    return results
+    
+def solve_nqueen(N):
+    #return naive_nqueen(N)
+    #return prunning_nqueen(N)
+    return bitmasks_nqueen(N)
 
 if __name__ == '__main__':
     N = 4
-    #results = naive_nqueen(N)
-    results = prunning_nqueen(N)
+    
+    results = solve_nqueen(N)
 
     for sol in results:
         print(sol)

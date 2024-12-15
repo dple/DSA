@@ -5,11 +5,6 @@ Implement knight tour problem using backtracking
 """
 N = 8
 
-def is_safe(x, y, board):
-    if (x >= 0 and y >= 0 and x < N and y < N and board[x][y] == -1):
-        return True
-    return False
-
 def knight_util(N, board, curr_x, curr_y, move_x, move_y, moves):
     if (moves == N**2):
         return True 
@@ -17,7 +12,7 @@ def knight_util(N, board, curr_x, curr_y, move_x, move_y, moves):
     for i in range(8):      # 8 possible moves of knight from one position
         new_x = curr_x + move_x[i]
         new_y = curr_y + move_y[i]
-        if is_safe(new_x, new_y, board):
+        if (new_x >= 0 and new_y >= 0 and new_x < N and new_y < N and board[new_x][new_y] == -1):
             board[new_x][new_y] = moves
 
             if knight_util(N, board, new_x, new_y, move_x, move_y, moves + 1):
@@ -42,10 +37,6 @@ def knight(N):
     else:
         for row in board:
             print(*row)
-            
-
-    
-
 
 if __name__ == '__main__':
     

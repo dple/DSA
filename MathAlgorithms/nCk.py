@@ -67,19 +67,14 @@ def dp_nCk_bottom_up(n, k):
 # DP with optimized memory using Pascal's triangle
 # Time O(n*k), Space O(k)
 def dp_nCk_optimized(n, k):
-    #if k > n - k:
-    #    k = n - k
     
     dp = [0 for _ in range(k + 1)]
 
     # C(n, 0) = 1
     dp[0] = 1
 
-    for i in range(1, n + 1):
-        #print("i = ", i)
+    for i in range(1, n + 1):    
         for j in range(min(i, k), 0, -1):        
-            print("j = ", j)
-
             dp[j] = dp[j] + dp[j - 1]
             print(dp[j], end=' ')
 
