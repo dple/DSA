@@ -27,7 +27,7 @@ def linear_sort(L):
         else:
             temp = L[L[i] - 1]
             L[L[i] - 1] = L[i]
-            L[i] = temp
+            L[i] = temp            
     
     return L
 
