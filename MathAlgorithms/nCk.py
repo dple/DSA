@@ -45,7 +45,7 @@ def  dp_nCk(n, k):
     return nCk_util(n, k, nemo)
 
 # Dynamic Programming with bottom-up approach
-# Time O(n*k), Space O(n*kk)
+# Time O(n*k), Space O(n*k)
 def dp_nCk_bottom_up(n, k):
     if k > n // 2: 
         k = n - k
