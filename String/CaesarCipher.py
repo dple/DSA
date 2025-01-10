@@ -3,7 +3,7 @@ This script implements the Caesar cipher
 Caesar's cipher performs a rotation shift for each letter by a number of letters.
 """
 
-def caesarCipher(plain, k):
+def encrypt(plain, k):
     """ Given a plain text and a number k. This implements Caesar cipher by performing a rotation shift by k position """
     lower = 'abcdefghijklmnopqrstuvwxyz'
     upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -18,8 +18,14 @@ def caesarCipher(plain, k):
             ret += c
     return ret
 
+def decrypt(cipher, k):
+    return encrypt(cipher, -k)
 
 if __name__ == '__main__':
     s = 'Always look on the Bright Side of Life!'
     k = 3
-    print(caesarCipher(s, k))
+    cipher = encrypt(s, k)
+    print("Encrypted message:", cipher)
+    print("Decrypted message:", decrypt(cipher, k))
+
+
