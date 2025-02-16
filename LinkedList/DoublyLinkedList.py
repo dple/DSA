@@ -53,18 +53,10 @@ class DoublyLinkedList:
 
     # Add a node with data = data as a new tail
     def insert_end_data(self, data):
-        if self.head == None:
-            self.head = node
-            self.tail = node
-            return 
-        
         node = Node(data)
-        if self.tail is not None:
-            self.tail.next = node
-        
-        node.prev = self.tail
-        self.tail = node
 
+        self.insert_end(node)
+        
     # Insert a new node into the beginning of the list
     def insert_at_front(self, node):
         
@@ -242,9 +234,9 @@ if __name__ == '__main__':
     
     node = Node(5)
     dllist.insert_end(node)    
-    dllist.insert_end(Node(10))        
+    dllist.insert_end_data(10)        
     dllist.insert_end(Node(11))    
-    dllist.insert_end(Node(12))    
+    dllist.insert_end_data(12)    
     dllist.insert_end(Node(13))    
     print("List before reversing. ", end='')
     dllist.forward_traversal()

@@ -1,4 +1,8 @@
 """
+Given a sorted array, find if a value is the array. If found, return its position
+"""
+
+"""
 1. Recursive approach
 """
 def binary_search_util(arr, start, end, value):
