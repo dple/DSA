@@ -45,9 +45,22 @@ class Solution:
         for i in range(2, n):
             dp[i] = dp[i - 1] + dp[i -2]
         return dp[n - 1]
+    
+    def dp_climbing_stairs_optimized_tab(self, n):
+        # Optimizing memory with Tabulation approach
+        two_back = 1
+        one_back = 2
+
+        for i in range(2, n):
+            current = one_back + two_back
+            two_back = one_back
+            one_back = current
+
+        return current 
 
 sol = Solution()
-n = 10
+n = 100
 print("Number of solutions (Recursion):", sol.climbing_stairs(n))
 print("Number of solutions (Top-down DP):", sol.dp_climbing_stairs_memo(n))
 print("Number of solutions (Bottom-up DP):", sol.dp_climbing_stairs_tabulation(n))
+print("Number of solutions (Optimized Bottom-up DP):", sol.dp_climbing_stairs_optimized_tab(n))
