@@ -24,7 +24,6 @@ def distinct_sorting(L):
     return res 
 
 
-
 # Best method using hash set
 # Complexity O(n)
 def distinct_elements(L):

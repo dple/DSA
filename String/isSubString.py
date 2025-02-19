@@ -13,10 +13,10 @@ def isSubString(ref, str):
     for c in str:
         if c.lower() == ref[i]:
             i += 1
-        if i == 10:
+        if i == len(ref):
             break
 
-    if i != 10:
+    if i != len(ref):
         return 'NO'
     else:
         return 'YES'

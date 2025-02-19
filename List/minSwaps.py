@@ -12,7 +12,7 @@ Explanation: Swap index 0 with 3 and 1 with 2 to form the sorted array {1, 2, 3,
 
 
 Input: {1, 5, 4, 3, 2}
-Output: 2
+Output: 2, swap 2 <-> 5, and 3 <-> 4
 """
 
 def min_swaps(L):
@@ -43,5 +43,5 @@ def min_swaps(L):
                 
 
 if __name__ == '__main__':
-    L = [1, 5, 4, 3, 2]
+    L = [1, 5, 2, 3, 4]
     print("Minimum number of swaps is: ", min_swaps(L))

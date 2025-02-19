@@ -13,12 +13,23 @@ def pangrams(s):
     states = 26*[0]
     for c in s:
         if c.lower() in alphabet:
-            states[alphabet.index(c.lower())] = 1
+            states[alphabet.index(c.lower())] += 1
     for i in range(26):
         if states[i] == 0:
             return 'not pangram'
     return 'pangram'
 
+def pangrams1(s: str) -> str:
+    # Using count() method
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    s = s.casefold()        # First, convert all letters in the string to lower case
+    for c in alphabet:
+        if s.count(c) == 0:
+            print(c)
+            return 'not pangram'
+        
+    return 'pangram'
+
 if __name__ == '__main__':
     s= 'We promptly judged antique ivory buckles for the next prize'
-    print(pangrams(s))
+    print(pangrams1(s))

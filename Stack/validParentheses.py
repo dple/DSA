@@ -24,8 +24,8 @@ def is_valid_paratheses(s):
 
 if __name__ == '__main__':    
 
-    #s = "[()]{}{[()()]()}"
-    s = "[(])"
+    s = "[()]{}{[()()]()}"
+    #s = "[(])"
 
     print(is_valid_paratheses(s))
 
