@@ -29,7 +29,7 @@ class Solution:
         
     def unique_number_occurrences1(self, arr):
         # Using counter 
-        c = Counter(arr)
+        counter = Counter(arr)
         """
         s = set(c.values())        
         if len(s) == len(c):
@@ -38,7 +38,7 @@ class Solution:
             return False
         """
         s = set()
-        for v in c.values():
+        for v in counter.values():
             if v in s:
                 return False
             else:

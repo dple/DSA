@@ -23,6 +23,18 @@ def isPalindrome1(s):
             return False
     return True 
 
+# Same complexity by using two pointers techniques 
+def isPalindrome_twopointers(s):
+    left = 0
+    right = len(s) - 1
+    while left < right:
+        if s[left] != s[right]:
+            return False 
+        left += 1
+        right -= 1
+    
+    return True
+
 # Using reverted string. Time O(1). Space: O(1)
 def isPalindrome2(num):
 
@@ -37,10 +49,11 @@ def isPalindrome2(num):
 
 if __name__ == "__main__":
 
-    s = "iTopiNonAvevanoNipoti"
+    #s = "iTopiNonAvevanoNipoti"
+    s = "racecar"
     s = s.lower()
 
-    if (isPalindrome1(s)):
+    if (isPalindrome_twopointers(s)):
         print(s, " is a Palindrome string")
     else:
         print(s, " is NOT a Palindrome string")

@@ -10,18 +10,31 @@ Input: array= [2, 7, 11, 15], target = 9
 Output: 0, 1
 """
 class Solution:
-    def two_sum(self, nums, target):
+    def naive_two_sum(self, nums: list[int], target: int) -> list[int]:
+        # Naive approach by exhausively scanning the array find two numbers
+        # Time: 0(n^2)
+        for i in range(len(nums)):
+            for j in range(i, len(nums)):
+                if nums[i] + nums[j] == target:
+                    return [i, j]
+        
+        return [-1, -1]
+    
+    def two_sum(self, nums: list[int], target: int) -> list[int]:
+        # Using hash map. Time complexity 0(n)
         h = {}
-        for i, num in enumerate(nums):
-            h[num] = i
         
         for i, num in enumerate(nums):
             desired = target - num
-            if desired in h and h[desired] != i:
-                return i, h[desired]
+            if desired in h:    # Lookup an item in hash map in O(1) time
+                return [h[desired], i]
+            h[num] = i
+
+        return [-1, -1]     # Not found a pair
 
 sol = Solution() 
 
 nums = [2, 7, 11, 15]
 target = 9
-print(sol.two_sum(nums=nums, target=target))
+print("Naive solution", sol.two_sum(nums=nums, target=target))
+print("Hash map solution", sol.two_sum(nums=nums, target=target))

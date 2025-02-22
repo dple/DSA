@@ -29,7 +29,7 @@ def binary_search(arr, value):
 def iterative_binary_search(arr, value):
     i, j = 0, len(arr) - 1
 
-    while i < j:
+    while i <= j:
         mid = (i + j) // 2
         if arr[mid] == value:
             return mid 
