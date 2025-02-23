@@ -5,6 +5,7 @@ https://leetcode.com/problems/longest-consecutive-sequence/description/
 
 class Solution:
     def longest_consecutive(self, nums: list[int]) -> int:
+        # Using list. 1) sort list; 2) scan the list. Complexity: 0(nlog n)
         if nums == []: 
             return 0
         
@@ -25,6 +26,7 @@ class Solution:
         return longest
     
     def longest_consecutive_set(self, nums: list[int]) -> int:
+        # Using set (contains unique numbers). Complexity 0(n) as lookup in a set is constant time 
         if nums == []: 
             return 0
         s = set(nums)
