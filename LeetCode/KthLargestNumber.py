@@ -9,7 +9,7 @@ class Solution:
         # Sort the array then return the kth element from smallest
         # Complexity: 0(n log n)
         nums.sort()
-        return nums[k]
+        return nums[-k]
     
 
     def kth_largest_number(self, nums: list[int], k: int) -> int:
@@ -41,7 +41,7 @@ class Solution:
             heapq.heappop(nums)
         
         # Get the kth element 
-        return abs(heapq.heappop(nums))
+        return ((-1) * heapq.heappop(nums))
 
 sol = Solution()
 k = 15952 #4
